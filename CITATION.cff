@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "DPVAD_SAT"
+message: "Para fines académicos, cite este repositorio. La citación no implica autorización de reutilización del contenido."
+type: software
+authors:
+  - family-names: "Salazar Valencia"
+    given-names: "Rodrigo"
+version: "1.0.0"
+date-released: "2026-09-07"
+repository-code: "https://github.com/rsalazarvco-rgb/dpvad-sat"
+contact:
+  - email: "rsalazarv@unadvirtual.edu.co"
