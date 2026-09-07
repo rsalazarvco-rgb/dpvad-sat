@@ -1,15 +1,19 @@
-# Trazabilidad con el documento académico V6
+# Trazabilidad repositorio ↔ documento V6
 
-| Recurso del repositorio | Base documental |
+| Recurso | Correspondencia principal |
 |---|---|
-| `docs/architecture/COMPONENTS.md` | Cap. 8, Tabla 18 |
-| `docs/architecture/INTERFACES.md` | Cap. 8, Tabla 19 y servicios locales |
-| `firmware/PARAMETERS.md` | Cap. 8, Tabla 24 y resultados |
-| `thingspeak/FIELD_MAPPING.md` | Fig. 31, Tablas 33 y 34 |
-| `data/raw/local/` | Fuente primaria microSD |
-| `data/raw/system_logs/` | Logs operativos |
-| `data/derived/` | Tablas 29, 33, 34, 38 y síntesis |
-| `analysis/RESULTS.md` | Cap. 9 |
-| `docs/figures/` | Figuras 1–34 extraídas de V6 |
+| `docs/00_project/PROJECT_OVERVIEW.md` | Introducción, problema, objetivos y alcance |
+| `docs/01_architecture/ARCHITECTURE.md` | Cap. 8, arquitectura, componentes e interfaces |
+| `docs/01_architecture/DATA_MODEL.md` | Cap. 8–9, estructura lógica y trazabilidad |
+| `docs/02_methodology/METHODOLOGY.md` | Cap. 7 |
+| `docs/03_results/RESULTS.md` | Cap. 9 |
+| `docs/03_results/RESULTS_MATRIX.md` | Matriz de validación integral |
+| `docs/04_limitations/LIMITATIONS.md` | Cap. 10 |
+| `thingspeak/README.md` | Cap. 8–10 |
+| `data/raw/local/` | Evidencia primaria microSD |
+| `data/raw/system_logs/` | Evidencia operativa |
+| `data/derived/` | Tablas derivadas de V6 |
+| `docs/figures/` | Figuras 1–34 |
+| `firmware/` | Componente técnico y fuente preliminar sanitizada |
 
-Los recursos derivados deben interpretarse junto con las limitaciones descritas en los capítulos 9 y 10 de la tesis.
+La finalidad del repositorio es facilitar consulta y reproducibilidad académica sin reemplazar el documento formal de grado.

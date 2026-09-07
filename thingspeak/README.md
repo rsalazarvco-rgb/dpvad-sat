@@ -1,19 +1,26 @@
 # ThingSpeak
 
-ThingSpeak fue la plataforma remota utilizada para recepción y visualización de telemetría.
+ThingSpeak fue utilizado como plataforma de recepción y visualización remota.
 
-Resultados de la ventana formal:
-- 11.148 publicaciones remotas;
-- 7.641 ONLINE;
-- 3.507 BACKFILL;
+## Mapeo documentado
+
+| Campo | Variable | ONLINE | BACKFILL |
+|---|---|---:|---:|
+| `field1` | Distancia | Sí | Sí |
+| `field2` | Temperatura | Sí | Sí |
+| `field3` | Humedad | Sí | Sí |
+| `field4` | MQ-9 / `gas_ppm` estimado | Sí | Sí |
+| `field5` | Presión | Sí | Sí |
+| `field6` | Altitud estimada | Sí | Sí |
+| `field7` | Información temporal | Sí | No |
+| `field8` | Estado operativo | Sí | No |
+
+## Resultados
+- 11.148 publicaciones remotas.
+- 7.641 ONLINE.
+- 3.507 BACKFILL.
 - BACKFILL = 31,46 % de la telemetría remota.
 
-El canal remoto es parte del entorno experimental, pero no reemplaza la persistencia local en microSD.
+## Fuente original pendiente
 
-## Exportación pendiente de incorporar
-
-El documento V6 identifica `feeds_thingspeak.csv` como fuente primaria del análisis. Ese archivo no estaba disponible entre los materiales recuperados para esta reconstrucción del paquete, por lo que **no se fabricó ni reconstruyó artificialmente**.
-
-Cuando se disponga del CSV original debe ubicarse en:
-
-`data/raw/thingspeak/feeds_thingspeak.csv`
+La tesis identifica `feeds_thingspeak.csv` como fuente primaria. No se genera una reconstrucción artificial. Cuando se disponga del export original, debe almacenarse en `data/raw/thingspeak/`.

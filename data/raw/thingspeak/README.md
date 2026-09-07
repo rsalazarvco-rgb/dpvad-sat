@@ -1,7 +1,5 @@
-# Exportación original de ThingSpeak pendiente
+# Exportación original de ThingSpeak
 
-Archivo esperado según el documento académico:
+Archivo esperado: `feeds_thingspeak.csv`.
 
-`feeds_thingspeak.csv`
-
-No se incluye una reconstrucción artificial. Debe cargarse únicamente el archivo exportado originalmente desde ThingSpeak.
+No se incluye una reconstrucción artificial. Debe agregarse únicamente la exportación original utilizada durante el análisis.

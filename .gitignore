@@ -1,4 +1,4 @@
-# Secrets
+# Credenciales y secretos
 .env
 secrets.h
 config.h
@@ -6,7 +6,7 @@ credentials.h
 *.pem
 *.key
 
-# Builds / temp
+# Temporales / builds
 build/
 .vscode/
 .idea/

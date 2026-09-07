@@ -1,28 +1,21 @@
-# Firmware preliminar
+# Firmware
 
-El directorio `source/` contiene una **versión preliminar sanitizada** del firmware recuperada de los materiales del proyecto.
+El firmware es el componente técnico principal del DPVAD_SAT.
 
-## Importante
-
-El archivo publicado corresponde a un candidato **V12.5 SYNC RC1** y se incluye como material académico preliminar. No se afirma que sea una copia bit a bit de la versión final utilizada durante toda la ventana experimental.
-
-Antes de incorporarlo al repositorio público se sustituyeron:
-- SSID y contraseña Wi‑Fi;
-- contraseña del AP;
-- credenciales de los portales web;
-- clave de escritura de ThingSpeak.
-
-## Arquitectura documentada
-
-La versión V6 describe una máquina de estados no bloqueante con:
-- adquisición multisensorial;
-- persistencia diaria en microSD;
-- ONLINE;
-- OFFLINE;
-- BACKFILL;
-- servidor web;
-- JSON;
+## Arquitectura funcional
+La V6 documenta módulos para:
+- sensores;
+- persistencia;
+- telemetría;
+- servidor web/JSON;
+- contingencia RAM/BACKFILL;
 - logging y trazabilidad;
-- contingencia en RAM.
+- máquina de estados y planificador no bloqueante.
 
-Consulte `docs/figures/figure_31_flujo_operativo_firmware.png`.
+## Fuente publicada
+`source/DPVAD_SAT_v12_5_SYNC_RC1_1_PUBLIC.ino` es una versión preliminar sanitizada recuperada de materiales previos del proyecto.
+
+No se afirma que sea una copia bit a bit de la versión exacta utilizada en toda la campaña experimental.
+
+## Seguridad
+Antes de publicarse se sustituyeron credenciales y claves sensibles. Aun así, debe realizarse una revisión manual antes de cada commit.

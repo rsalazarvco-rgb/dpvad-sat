@@ -1,0 +1,16 @@
+indicator,value,scope
+local_records,11135,microSD
+nominal_expected,11160,"21-28 Jul 2026, partial day 28"
+local_completeness_percent,99.776,temporal local
+remote_publications,11148,ThingSpeak
+online_publications,7641,68.54% remote
+backfill_publications,3507,31.46% remote
+backfill_operational_completeness_percent,100,6/6 fields
+backfill_integral_completeness_percent,75,6/8 fields
+physical_duplicates_exact,0,criteria defined in thesis
+successful_backfill_batches,249,logs
+failed_backfill_attempts,139,"attempts, not unique lost records"
+max_pending_queue,1479,finished at zero
+intervals_exactly_60s_percent,96.486,10736/11127
+intervals_gt90s,18,max 157 s
+rssi_median_dbm,-69,controlled Wi-Fi periods

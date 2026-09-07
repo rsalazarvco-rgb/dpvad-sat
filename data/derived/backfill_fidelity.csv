@@ -1,4 +1,4 @@
-field,variable,pairs,absolute_error,percentage_error,resolution
+field,variable,pairs,absolute_error,percentage_error,comparison_resolution
 field1,Distancia (cm),3507,0,0,2 decimales
 field2,Temperatura (°C),3507,0,0,2 decimales
 field3,Humedad (%),3507,0,0,2 decimales

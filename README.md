@@ -2,94 +2,144 @@
 
 **Plataforma de Adquisición de Datos para Sistemas de Alerta Temprana en Contextos con Baja Conectividad**
 
-DPVAD_SAT es una plataforma académica basada en ESP32 para adquisición, persistencia local, visualización y transmisión de datos ambientales bajo conectividad intermitente. La solución desacopla la adquisición de la disponibilidad inmediata de internet mediante operación **ONLINE, OFFLINE y BACKFILL**.
+> Proyecto académico de Ingeniería de Telecomunicaciones — Universidad Nacional Abierta y a Distancia (UNAD).
 
-![Arquitectura funcional](docs/figures/figure_16_arquitectura_solucion.png)
+DPVAD_SAT es una plataforma de adquisición ambiental basada en **ESP32** diseñada para mantener la captura y persistencia de información cuando la conectividad remota es limitada o intermitente. Su arquitectura desacopla adquisición y transmisión mediante operación **ONLINE, OFFLINE y BACKFILL**, persistencia local en microSD y recuperación diferida.
+
+![Arquitectura de la solución](docs/figures/figure_16_arquitectura_solucion.png)
+
+## Objetivo técnico
+
+Integrar sensores heterogéneos, procesamiento en el borde, almacenamiento local, visualización, telemetría y recuperación diferida para reducir la dependencia de disponibilidad inmediata de internet durante la adquisición.
 
 ## Alcance
 
-El prototipo se ubica en el componente de **monitoreo y detección** asociado a un SAT. No implementa un SAT completo: no incorpora modelos predictivos validados, umbrales institucionales certificados, difusión formal de alertas ni procedimientos de respuesta.
+DPVAD_SAT corresponde al componente de **monitoreo y adquisición** asociado a un Sistema de Alerta Temprana. La versión evaluada **no es un SAT institucional completo**: no incorpora modelos predictivos validados, umbrales oficiales, difusión formal de alertas ni protocolos institucionales de respuesta.
 
 ## Arquitectura
 
-Nodo central: **ESP32 DevKit V1**.
+El ESP32 DevKit V1 actúa como nodo central e integra:
 
-Sensores y periféricos:
-- DHT22: temperatura y humedad.
-- HC-SR04: distancia/nivel experimental.
-- MQ-9: respuesta relativa a gases combustibles.
-- MPU-9250: variables inerciales.
-- BMP/BME280: presión, temperatura y altitud estimada.
-- LCD 20 × 4.
-- microSD.
-- Wi‑Fi y servicios HTTP.
+- DHT22 — temperatura y humedad;
+- HC-SR04 — distancia/nivel experimental;
+- MQ-9 — respuesta relativa a gases combustibles;
+- MPU-9250 — variables inerciales;
+- BMP/BME280 — presión, temperatura y altitud estimada;
+- LCD 20 × 4;
+- microSD;
+- Wi‑Fi;
+- ThingSpeak;
+- servicios HTTP locales.
 
-![Flujo de adquisición](docs/figures/figure_17_flujo_adquisicion_persistencia_sincronizacion.png)
+![Flujo funcional](docs/figures/figure_17_flujo_adquisicion_persistencia.png)
 
-## Operación offline-first
+### Firmware
 
-- **ONLINE:** adquisición local + publicación remota.
-- **OFFLINE:** la adquisición y persistencia continúan sin publicación inmediata.
-- **BACKFILL:** los registros pendientes se recuperan por lotes cuando retorna la conectividad.
+![Arquitectura modular](docs/figures/figure_18_arquitectura_firmware.png)
 
-![Arquitectura del firmware](docs/figures/figure_18_arquitectura_modular_firmware.png)
+La máquina de estados coordina sensores, persistencia, telemetría, web/JSON, contingencia RAM/BACKFILL y logging.
+
+### Modos de operación
+
+- **ONLINE:** adquisición, persistencia y publicación remota.
+- **OFFLINE:** adquisición y persistencia continúan sin publicación inmediata.
+- **BACKFILL:** recuperación diferida de registros pendientes.
+
+![ONLINE / BACKFILL](docs/figures/figure_22_online_backfill.png)
 
 ## Servicios locales
 
-- **Puerto 80:** consulta y descarga de registros almacenados en microSD.
-- **Puerto 8080:** administración y trazabilidad operativa de solo lectura.
+**Puerto 80 — portal de datos:** consulta y descarga de CSV almacenados en microSD.
 
-![Portal de datos](docs/figures/figure_33_portal_datos_puerto_80.png)
+![Portal de datos](docs/figures/figure_33_portal_datos.png)
 
-![Portal de trazabilidad](docs/figures/figure_34_portal_trazabilidad_puerto_8080.png)
+**Puerto 8080 — trazabilidad operativa:** versión de firmware, conectividad, pendientes, lotes, eventos y logs.
+
+![Portal de trazabilidad](docs/figures/figure_34_portal_trazabilidad.png)
 
 ## ThingSpeak y MATLAB
 
-ThingSpeak fue utilizado como plataforma remota de recepción y visualización de telemetría. MATLAB se utilizó como tecnología complementaria para análisis y representación de datos.
+ThingSpeak fue utilizado como plataforma remota de recepción y visualización. MATLAB se utilizó como tecnología complementaria para análisis y representación de datos.
 
-Mapeo ONLINE documentado:
-`field1` distancia, `field2` temperatura, `field3` humedad, `field4` MQ-9, `field5` presión, `field6` altitud, `field7` fecha/hora local y `field8` estado.
+![ThingSpeak](docs/figures/figure_32_thingspeak.png)
 
-BACKFILL transmite `field1`–`field6`.
+### Mapeo remoto
 
-![ThingSpeak](docs/figures/figure_32_thingspeak_canal.png)
+| Campo | Variable | ONLINE | BACKFILL |
+|---|---|---:|---:|
+| `field1` | Distancia | Sí | Sí |
+| `field2` | Temperatura | Sí | Sí |
+| `field3` | Humedad | Sí | Sí |
+| `field4` | MQ-9 / `gas_ppm` estimado | Sí | Sí |
+| `field5` | Presión | Sí | Sí |
+| `field6` | Altitud estimada | Sí | Sí |
+| `field7` | Información temporal | Sí | No |
+| `field8` | Estado operativo | Sí | No |
 
-## Datos disponibles en este paquete
+## Validación experimental
 
-Se incluyen:
-- registros locales originales de microSD;
-- logs operativos originales;
-- tablas derivadas de los resultados V6;
-- firmware preliminar sanitizado;
-- las 34 figuras del documento V6.
+Ventana formal: **21–28 de julio de 2026 (UTC−5)**.
 
-La exportación original `feeds_thingspeak.csv` está identificada en la tesis como fuente primaria, pero no se reconstruye artificialmente si no está disponible.
+Fuentes:
+1. microSD;
+2. ThingSpeak;
+3. logs del firmware.
+
+![Conteos diarios](docs/figures/figure_21_conteos_diarios.png)
 
 ## Resultados principales
 
-- **11.135** registros locales de **11.160** nominales: **99,776 %**.
-- **11.148** publicaciones remotas.
-- **7.641 ONLINE**.
-- **3.507 BACKFILL** (**31,46 %** de la telemetría remota).
-- BACKFILL: **100 %** respecto de los seis campos implementados y **75 %** frente a los ocho campos ONLINE.
-- **0 duplicados físicos exactos** bajo los criterios evaluados.
-- **249** lotes BACKFILL exitosos y **139** intentos fallidos.
-- **96,486 %** de los intervalos intradía fueron exactamente de 60 s.
+| Indicador | Resultado |
+|---|---:|
+| Registros locales | **11.135** |
+| Registros nominales | **11.160** |
+| Completitud temporal local | **99,776 %** |
+| Publicaciones remotas | **11.148** |
+| ONLINE | **7.641 (68,54 %)** |
+| BACKFILL | **3.507 (31,46 %)** |
+| BACKFILL conciliado | **3.507/3.507** |
+| Completitud BACKFILL operativa | **100 % (6/6)** |
+| Completitud integral BACKFILL | **75 % (6/8)** |
+| Duplicados físicos exactos | **0** |
+| Lotes exitosos | **249** |
+| Intentos fallidos | **139** |
+| Cola pendiente máxima | **1.479** |
+| Intervalos exactamente de 60 s | **96,486 %** |
+| Intervalos >90 s | **18** |
+| Intervalo máximo | **157 s** |
 
-![Resultados ONLINE/BACKFILL](docs/figures/figure_22_campos_online_backfill.png)
+![Conciliación](docs/figures/figure_24_conciliacion.png)
 
-## Firmware
+### Fidelidad BACKFILL
 
-`firmware/source/DPVAD_SAT_v12_5_SYNC_RC1_1_PUBLIC.ino` es una versión **preliminar sanitizada**. Las credenciales originales fueron sustituidas antes de su inclusión.
+Las 3.507 publicaciones BACKFILL pudieron conciliarse con combinaciones locales únicas de `field1`–`field6`. A la resolución de dos decimales usada en la comparación, el error absoluto y porcentual observado fue cero. Esto evalúa fidelidad de transmisión, **no exactitud metrológica**.
+
+### Limitaciones
+
+- Wi‑Fi evaluado en entorno controlado.
+- Sin latencia extremo a extremo por falta de timestamps comparables.
+- Sin clave individual común para conciliar toda la serie ONLINE.
+- BACKFILL omite `field7` y `field8`.
+- Sin instrumentos patrón certificados para todas las variables.
+- `field4` presentó ausencias ONLINE que no tienen una única explicación demostrable.
+
+## Contenido del repositorio
+
+```text
+docs/          arquitectura, metodología, resultados, limitaciones y figuras
+firmware/      fuente preliminar sanitizada y parámetros
+data/raw/      registros microSD y logs operativos originales
+data/derived/  tablas derivadas de la V6
+thingspeak/    mapeo y resultados de telemetría
+matlab/        alcance del análisis MATLAB
+analysis/      guía de análisis
+contact/       contacto académico
+```
 
 ## Derechos de uso
 
 **Copyright © 2026 Rodrigo Salazar Valencia. Todos los derechos reservados.**
 
-Este repositorio es público para consulta, evaluación y reproducibilidad académica, pero **no concede una licencia abierta de reutilización**. Consulte [RIGHTS.md](RIGHTS.md).
+El repositorio es público para consulta y reproducibilidad académica, pero no concede una licencia abierta de reutilización. Consulte [RIGHTS.md](RIGHTS.md).
 
 Contacto: **rsalazarv@unadvirtual.edu.co**
-
-## Documento base
-
-La organización técnica de este repositorio fue contrastada con la versión V6 del proyecto de grado de Ingeniería de Telecomunicaciones, Universidad Nacional Abierta y a Distancia — UNAD.

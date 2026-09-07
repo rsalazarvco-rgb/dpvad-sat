@@ -1,13 +1,13 @@
-# Análisis
+# Material de análisis
 
-Este directorio organiza los procedimientos y resultados derivados del análisis experimental.
+Este directorio documenta la relación entre las fuentes experimentales y los indicadores reportados.
 
-Subdirectorios:
+Los archivos derivados disponibles en `data/derived/` incluyen:
+- `daily_counts.csv`;
+- `local_statistics.csv`;
+- `completeness_by_mode.csv`;
+- `backfill_fidelity.csv`;
+- `temporal_regularity.csv`;
+- `platform_results.csv`.
 
-- `reconciliation/`: conciliación entre fuentes;
-- `completeness/`: completitud de datos;
-- `uniqueness/`: unicidad física y análisis lógico;
-- `temporal_analysis/`: regularidad y discontinuidades temporales;
-- `backfill/`: recuperación diferida y comportamiento de lotes.
-
-Los análisis deben distinguir entre resultados observados, inferencias permitidas y aspectos que no pueden demostrarse con las fuentes disponibles.
+Los resultados deben interpretarse junto con `docs/04_limitations/LIMITATIONS.md`.

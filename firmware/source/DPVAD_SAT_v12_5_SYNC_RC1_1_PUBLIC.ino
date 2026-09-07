@@ -1,14 +1,13 @@
 /*
- * DPVAD_SAT - versión preliminar sanitizada para consulta académica.
- *
- * IMPORTANTE:
- * - Este archivo deriva de un candidato de firmware V12.5 SYNC RC1 conservado
- *   entre los materiales del proyecto.
- * - No se presenta como copia certificada de la versión final utilizada en
- *   todos los ensayos documentados.
- * - Se retiraron o sustituyeron credenciales, contraseñas y claves API.
- * - Todos los derechos reservados. Consulte RIGHTS.md.
- */
+ DPVAD_SAT - firmware preliminar sanitizado para consulta académica.
+
+ Este archivo corresponde a un candidato V12.5 SYNC RC1 recuperado de los
+ materiales del proyecto. No se presenta como copia bit a bit certificada de
+ la versión exacta usada en todos los ensayos.
+
+ Credenciales, contraseñas y claves API fueron sustituidas.
+ Consulte RIGHTS.md antes de cualquier reutilización.
+*/
 
 #include <Wire.h>
 #include <DHT.h>
@@ -59,10 +58,10 @@ const char* FIRMWARE_VERSION = "12.5-SYNC-RC1";
 #define SD_MOSI 23
 
 // -------------------- WiFi / AP ----------------
-const char* WIFI_SSID = "YOUR_WIFI_SSID";
-const char* WIFI_PASS = "YOUR_WIFI_PASSWORD";
+const char* WIFI_SSID = "YOUR_WIFI_SSID"; // "lab_sat";
+const char* WIFI_PASS = "YOUR_WIFI_PASSWORD"; // "gkqzfbdzubdhadg";
 const char* AP_SSID   = "DPVAD/SAT";
-const char* AP_PASS = "CHANGE_ME_AP_PASSWORD";
+const char* AP_PASS   = "CHANGE_ME_AP_PASSWORD";
 IPAddress AP_IP(192, 168, 4, 1);
 
 String staIPStr = "-", apIPStr = "-";
@@ -70,13 +69,13 @@ String staIPStr = "-", apIPStr = "-";
 // -------------------- Seguridad Web ------------
 // Autenticacion HTTP Basic para el portal de administracion.
 // IMPORTANTE: cambiar estas credenciales antes de un despliegue definitivo.
-const char* WEB_ADMIN_USER = "CHANGE_ME_ADMIN_USER";
-const char* WEB_ADMIN_PASSWORD = "CHANGE_ME_ADMIN_PASSWORD";
+const char* WEB_ADMIN_USER = "CHANGE_ME_USER";
+const char* WEB_ADMIN_PASSWORD = "CHANGE_ME_PASSWORD";
 
 // Portal independiente de trazabilidad operativa (puerto 8080).
 // Estas credenciales son distintas de las del portal de históricos.
-const char* LOG_WEB_USER = "CHANGE_ME_LOG_USER";
-const char* LOG_WEB_PASSWORD = "CHANGE_ME_LOG_PASSWORD";
+const char* LOG_WEB_USER = "CHANGE_ME_USER";
+const char* LOG_WEB_PASSWORD = "CHANGE_ME_PASSWORD";
 const uint16_t LOG_WEB_PORT = 8080;
 
 // -------------------- ThingSpeak ---------------

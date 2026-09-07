@@ -2,6 +2,6 @@
 
 **Rodrigo Salazar Valencia**  
 Universidad Nacional Abierta y a Distancia — UNAD  
-Correo institucional: **rsalazarv@unadvirtual.edu.co**
+Correo: **rsalazarv@unadvirtual.edu.co**
 
-Para solicitudes de autorización de uso, información adicional, datos complementarios o aclaraciones técnicas relacionadas con DPVAD_SAT, utilizar el correo institucional indicado.
+Cualquier solicitud de información adicional, datos complementarios o autorización de uso debe realizarse a través del correo institucional.

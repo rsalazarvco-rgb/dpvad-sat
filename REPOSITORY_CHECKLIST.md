@@ -1,12 +1,16 @@
-# Verificación antes de publicar
+# Checklist antes de publicar
 
-- [x] README con arquitectura, resultados y evidencia gráfica.
-- [x] Figuras V6 extraídas y organizadas.
+- [x] README académico consolidado.
+- [x] Arquitectura documentada.
+- [x] Metodología documentada.
+- [x] Resultados cuantitativos documentados.
+- [x] Limitaciones explícitas.
+- [x] 34 figuras extraídas de V6.
 - [x] Registros microSD disponibles.
 - [x] Logs operativos disponibles.
+- [x] Datos derivados disponibles.
 - [x] Firmware preliminar sanitizado.
-- [x] Derechos reservados documentados.
-- [ ] Incorporar `feeds_thingspeak.csv` original.
+- [x] Derechos reservados.
+- [ ] Incorporar `feeds_thingspeak.csv` original cuando esté disponible.
 - [ ] Incorporar scripts MATLAB originales si están disponibles.
-- [ ] Revisar nuevamente el firmware público antes del commit.
-- [ ] Confirmar que no existan claves, passwords o tokens en archivos nuevos.
+- [ ] Revisión manual final de secretos antes de push.

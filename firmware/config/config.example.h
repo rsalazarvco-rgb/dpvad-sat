@@ -1,6 +1,5 @@
 #pragma once
-
-// Plantilla pública. No publicar credenciales reales.
+// Plantilla pública de configuración. No incluir secretos reales.
 #define WIFI_SSID "YOUR_WIFI_SSID"
 #define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
 #define AP_PASSWORD "CHANGE_ME_AP_PASSWORD"
