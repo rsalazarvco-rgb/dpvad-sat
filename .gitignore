@@ -1,0 +1,17 @@
+# Credenciales y secretos
+.env
+secrets.h
+config.h
+credentials.h
+*.pem
+*.key
+
+# Temporales / builds
+build/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.asv

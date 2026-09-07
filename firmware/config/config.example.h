@@ -1,0 +1,7 @@
+#pragma once
+// Plantilla pública de configuración. No incluir secretos reales.
+#define WIFI_SSID "YOUR_WIFI_SSID"
+#define WIFI_PASSWORD "YOUR_WIFI_PASSWORD"
+#define AP_PASSWORD "CHANGE_ME_AP_PASSWORD"
+#define THINGSPEAK_CHANNEL_ID 0000000
+#define THINGSPEAK_WRITE_API_KEY "YOUR_THINGSPEAK_WRITE_API_KEY"
