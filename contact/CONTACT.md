@@ -1,11 +1,7 @@
 # Contacto académico
 
-El contenido de este repositorio constituye material complementario del proyecto de grado **DPVAD_SAT**.
-
-Para solicitar información adicional, aclaraciones sobre los datos, versiones complementarias del código fuente, documentación técnica o autorización para reutilizar materiales del repositorio, deberá utilizarse el canal institucional:
-
 **Rodrigo Salazar Valencia**  
 Universidad Nacional Abierta y a Distancia — UNAD  
-**Correo institucional:** rsalazarv@unadvirtual.edu.co
+Correo institucional: **rsalazarv@unadvirtual.edu.co**
 
-Repositorio: https://github.com/rsalazarvco-rgb/dpvad-sat
+Para solicitudes de autorización de uso, información adicional, datos complementarios o aclaraciones técnicas relacionadas con DPVAD_SAT, utilizar el correo institucional indicado.

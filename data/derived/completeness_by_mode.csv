@@ -1,0 +1,17 @@
+mode,field,records,present,completeness_percent,note
+ONLINE,field1,7641,7641,100.0,
+ONLINE,field2,7641,7641,100.0,
+ONLINE,field3,7641,7641,100.0,
+ONLINE,field4,7641,6516,85.277,
+ONLINE,field5,7641,7641,100.0,
+ONLINE,field6,7641,7641,100.0,
+ONLINE,field7,7641,7641,100.0,
+ONLINE,field8,7641,7641,100.0,
+BACKFILL,field1,3507,3507,100.0,
+BACKFILL,field2,3507,3507,100.0,
+BACKFILL,field3,3507,3507,100.0,
+BACKFILL,field4,3507,3507,100.0,
+BACKFILL,field5,3507,3507,100.0,
+BACKFILL,field6,3507,3507,100.0,
+BACKFILL,field7,3507,0,,No transmitido por diseño
+BACKFILL,field8,3507,0,,No transmitido por diseño

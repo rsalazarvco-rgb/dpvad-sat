@@ -1,23 +1,28 @@
-# Firmware
+# Firmware preliminar
 
-Este directorio está destinado a la versión académica preliminar del firmware del DPVAD_SAT.
+El directorio `source/` contiene una **versión preliminar sanitizada** del firmware recuperada de los materiales del proyecto.
 
-## Antes de publicar
+## Importante
 
-Verificar y retirar:
+El archivo publicado corresponde a un candidato **V12.5 SYNC RC1** y se incluye como material académico preliminar. No se afirma que sea una copia bit a bit de la versión final utilizada durante toda la ventana experimental.
 
-- SSID y contraseña Wi-Fi reales;
-- claves API de ThingSpeak;
-- tokens;
-- credenciales;
-- endpoints privados;
-- datos personales;
-- información sensible de infraestructura.
+Antes de incorporarlo al repositorio público se sustituyeron:
+- SSID y contraseña Wi‑Fi;
+- contraseña del AP;
+- credenciales de los portales web;
+- clave de escritura de ThingSpeak.
 
-La configuración pública debe utilizar únicamente valores de ejemplo, como los incluidos en `config/config.example.h`.
+## Arquitectura documentada
 
-## Derechos de uso
+La versión V6 describe una máquina de estados no bloqueante con:
+- adquisición multisensorial;
+- persistencia diaria en microSD;
+- ONLINE;
+- OFFLINE;
+- BACKFILL;
+- servidor web;
+- JSON;
+- logging y trazabilidad;
+- contingencia en RAM.
 
-El código se publica para consulta y reproducibilidad académica. No se autoriza su copia, modificación, redistribución o incorporación en otros proyectos sin autorización previa y expresa del autor.
-
-Contacto: rsalazarv@unadvirtual.edu.co
+Consulte `docs/figures/figure_31_flujo_operativo_firmware.png`.

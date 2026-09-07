@@ -1,9 +1,7 @@
-# Datos ThingSpeak
+# Exportación original de ThingSpeak pendiente
 
-Ubicar aquí la exportación original de ThingSpeak utilizada en el análisis.
-
-Archivo sugerido:
+Archivo esperado según el documento académico:
 
 `feeds_thingspeak.csv`
 
-Conservar el archivo original sin modificación.
+No se incluye una reconstrucción artificial. Debe cargarse únicamente el archivo exportado originalmente desde ThingSpeak.

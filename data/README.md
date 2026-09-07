@@ -1,31 +1,23 @@
 # Datos experimentales
 
-Este directorio organiza los conjuntos de datos utilizados en la validación del DPVAD_SAT.
+Este repositorio incluye los registros locales y logs operativos recuperados de los materiales del proyecto.
 
-## Principio de conservación
+## Fuentes
 
-Los datos originales deben almacenarse en `raw/` y **no deben modificarse**.
+### `raw/local/`
+Archivos `data_station101_YYYYMMDD.csv` extraídos de la microSD.
 
-Cualquier limpieza, conciliación, transformación, agregación o cálculo derivado debe almacenarse en `processed/`.
+La ventana formal de análisis fue del **21 al 28 de julio de 2026, hasta las 18:00 UTC−5**. El archivo del 18 de julio y `pending_timestamp.csv` forman parte del material original, pero fueron excluidos de la ventana formal según el documento V6.
 
-## Ventana experimental
+### `raw/system_logs/`
+Logs diarios `system_YYYYMMDD.csv` utilizados para analizar estados, conectividad, reintentos y BACKFILL.
 
-Periodo principal documentado:
+### `raw/thingspeak/`
+Debe contener la exportación original `feeds_thingspeak.csv`. No se incluye si no está disponible como archivo fuente verificable.
 
-**21 al 28 de julio de 2026 (UTC−5).**
+### `derived/`
+Tablas derivadas de los resultados reportados en la tesis V6. No sustituyen las fuentes originales.
 
-## Fuentes principales
+## Regla de integridad
 
-- `raw/local/`: registros locales persistidos en microSD.
-- `raw/thingspeak/`: exportaciones de ThingSpeak.
-- `raw/system_logs/`: logs operativos del dispositivo.
-
-## Consideración de trazabilidad
-
-No debe suponerse una correspondencia uno a uno entre todas las filas locales y remotas cuando las fuentes exportadas no preservan una clave común que permita demostrarla de forma determinística.
-
-## Derechos de uso
-
-Los conjuntos de datos se publican para consulta y reproducibilidad académica. No se concede autorización general para copiarlos, redistribuirlos, modificarlos o reutilizarlos en otros trabajos sin autorización previa del autor.
-
-Contacto: rsalazarv@unadvirtual.edu.co
+Los archivos de `raw/` deben conservarse sin modificación. Todo procesamiento debe producir nuevos archivos en `derived/` o en un directorio de análisis.

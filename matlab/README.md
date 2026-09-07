@@ -1,11 +1,16 @@
 # MATLAB
 
-MATLAB se utilizó como herramienta complementaria para la exploración, procesamiento y representación de los datos generados durante la validación experimental.
+MATLAB se utilizó como tecnología complementaria para análisis y representación de información asociada al ecosistema ThingSpeak.
 
-Su uso debe distinguirse de la lógica ejecutada directamente por el ESP32:
+El documento V6 referencia ThingSpeak como plataforma de IoT de MathWorks y presenta resultados gráficos derivados del análisis experimental.
 
-- el ESP32 realiza adquisición, persistencia, operación ONLINE/OFFLINE/BACKFILL y servicios locales;
-- MATLAB se emplea en actividades de análisis y representación posterior;
-- ThingSpeak aporta capacidades de recepción, almacenamiento y visualización remota.
+## Estado del material
 
-Los scripts que puedan publicarse deben almacenarse en `scripts/` y las figuras derivadas en `figures/`.
+La versión V6 del documento no incorpora como anexos el código fuente de scripts MATLAB. Por rigor de reproducibilidad, este repositorio **no incluye scripts inventados o reconstruidos**.
+
+Los scripts originales, si están disponibles, deben incorporarse posteriormente en este directorio, identificando:
+- archivo de entrada;
+- variables utilizadas;
+- versión/toolboxes;
+- salida generada;
+- figura o tabla relacionada.

@@ -2,83 +2,94 @@
 
 **Plataforma de Adquisición de Datos para Sistemas de Alerta Temprana en Contextos con Baja Conectividad**
 
-## Descripción
+DPVAD_SAT es una plataforma académica basada en ESP32 para adquisición, persistencia local, visualización y transmisión de datos ambientales bajo conectividad intermitente. La solución desacopla la adquisición de la disponibilidad inmediata de internet mediante operación **ONLINE, OFFLINE y BACKFILL**.
 
-DPVAD_SAT es un prototipo académico basado en ESP32 orientado a la adquisición, persistencia, visualización y transmisión de variables ambientales en escenarios con disponibilidad limitada o intermitente de conectividad.
-
-La arquitectura implementa persistencia local en microSD y modos de operación **ONLINE, OFFLINE y BACKFILL**, bajo un enfoque *offline-first* y *store-and-forward*.
+![Arquitectura funcional](docs/figures/figure_16_arquitectura_solucion.png)
 
 ## Alcance
 
-El prototipo corresponde al componente de adquisición y monitoreo de información ambiental asociado a un Sistema de Alerta Temprana (SAT).
+El prototipo se ubica en el componente de **monitoreo y detección** asociado a un SAT. No implementa un SAT completo: no incorpora modelos predictivos validados, umbrales institucionales certificados, difusión formal de alertas ni procedimientos de respuesta.
 
-La versión evaluada **no constituye un SAT completo** y no incorpora modelos predictivos, umbrales institucionales certificados, difusión formal de alertas ni protocolos institucionales de respuesta.
+## Arquitectura
 
-## Tecnologías utilizadas
+Nodo central: **ESP32 DevKit V1**.
 
-- ESP32
-- Arduino Framework
-- Sensores ambientales integrados
-- microSD
-- LCD 20 × 4
-- Wi-Fi
-- HTTP
-- ThingSpeak
-- MATLAB
-- Servicios web locales
-- Procesamiento y análisis de datos
+Sensores y periféricos:
+- DHT22: temperatura y humedad.
+- HC-SR04: distancia/nivel experimental.
+- MQ-9: respuesta relativa a gases combustibles.
+- MPU-9250: variables inerciales.
+- BMP/BME280: presión, temperatura y altitud estimada.
+- LCD 20 × 4.
+- microSD.
+- Wi‑Fi y servicios HTTP.
 
-## ThingSpeak
+![Flujo de adquisición](docs/figures/figure_17_flujo_adquisicion_persistencia_sincronizacion.png)
 
-ThingSpeak fue utilizado como plataforma remota de recepción, almacenamiento y visualización de telemetría durante la validación experimental.
+## Operación offline-first
 
-El sistema implementó publicaciones en modo ONLINE y recuperación diferida mediante BACKFILL.
+- **ONLINE:** adquisición local + publicación remota.
+- **OFFLINE:** la adquisición y persistencia continúan sin publicación inmediata.
+- **BACKFILL:** los registros pendientes se recuperan por lotes cuando retorna la conectividad.
 
-## MATLAB
-
-MATLAB y las capacidades de análisis asociadas al ecosistema ThingSpeak se utilizaron como apoyo para la exploración, procesamiento y representación de los datos experimentales.
-
-MATLAB no forma parte de la lógica de adquisición ejecutada por el ESP32 ni de la continuidad offline del dispositivo.
-
-## Datos experimentales
-
-El repositorio está preparado para incluir los conjuntos de datos correspondientes a la ventana experimental documentada en el proyecto de grado.
-
-Fuentes principales:
-
-- registros persistidos localmente en microSD;
-- exportación de telemetría desde ThingSpeak;
-- logs operativos del sistema.
-
-Los datos originales deben conservarse sin modificación dentro de `data/raw/`. Toda transformación, depuración o conciliación debe almacenarse en `data/processed/`.
-
-## Código fuente
-
-El directorio `firmware/` está destinado a una versión académica preliminar del firmware utilizado durante el desarrollo y validación del DPVAD_SAT.
-
-Antes de publicar el código deben retirarse credenciales, claves API, contraseñas, endpoints privados y cualquier otro secreto.
+![Arquitectura del firmware](docs/figures/figure_18_arquitectura_modular_firmware.png)
 
 ## Servicios locales
 
-- **Puerto 80:** consulta y descarga de registros de datos almacenados en microSD.
-- **Puerto 8080:** interfaz de administración y trazabilidad operativa del dispositivo.
+- **Puerto 80:** consulta y descarga de registros almacenados en microSD.
+- **Puerto 8080:** administración y trazabilidad operativa de solo lectura.
 
-## Reproducibilidad académica
+![Portal de datos](docs/figures/figure_33_portal_datos_puerto_80.png)
 
-El repositorio complementa el documento académico con datos, código, documentación técnica y recursos de análisis que permiten revisar la validación experimental dentro del alcance descrito en el proyecto.
+![Portal de trazabilidad](docs/figures/figure_34_portal_trazabilidad_puerto_8080.png)
+
+## ThingSpeak y MATLAB
+
+ThingSpeak fue utilizado como plataforma remota de recepción y visualización de telemetría. MATLAB se utilizó como tecnología complementaria para análisis y representación de datos.
+
+Mapeo ONLINE documentado:
+`field1` distancia, `field2` temperatura, `field3` humedad, `field4` MQ-9, `field5` presión, `field6` altitud, `field7` fecha/hora local y `field8` estado.
+
+BACKFILL transmite `field1`–`field6`.
+
+![ThingSpeak](docs/figures/figure_32_thingspeak_canal.png)
+
+## Datos disponibles en este paquete
+
+Se incluyen:
+- registros locales originales de microSD;
+- logs operativos originales;
+- tablas derivadas de los resultados V6;
+- firmware preliminar sanitizado;
+- las 34 figuras del documento V6.
+
+La exportación original `feeds_thingspeak.csv` está identificada en la tesis como fuente primaria, pero no se reconstruye artificialmente si no está disponible.
+
+## Resultados principales
+
+- **11.135** registros locales de **11.160** nominales: **99,776 %**.
+- **11.148** publicaciones remotas.
+- **7.641 ONLINE**.
+- **3.507 BACKFILL** (**31,46 %** de la telemetría remota).
+- BACKFILL: **100 %** respecto de los seis campos implementados y **75 %** frente a los ocho campos ONLINE.
+- **0 duplicados físicos exactos** bajo los criterios evaluados.
+- **249** lotes BACKFILL exitosos y **139** intentos fallidos.
+- **96,486 %** de los intervalos intradía fueron exactamente de 60 s.
+
+![Resultados ONLINE/BACKFILL](docs/figures/figure_22_campos_online_backfill.png)
+
+## Firmware
+
+`firmware/source/DPVAD_SAT_v12_5_SYNC_RC1_1_PUBLIC.ino` es una versión **preliminar sanitizada**. Las credenciales originales fueron sustituidas antes de su inclusión.
 
 ## Derechos de uso
 
 **Copyright © 2026 Rodrigo Salazar Valencia. Todos los derechos reservados.**
 
-Este repositorio es público con fines de **consulta, evaluación y reproducibilidad académica**. Su publicación **no constituye una licencia de uso libre**.
+Este repositorio es público para consulta, evaluación y reproducibilidad académica, pero **no concede una licencia abierta de reutilización**. Consulte [RIGHTS.md](RIGHTS.md).
 
-Salvo los derechos mínimos necesarios para visualizar y utilizar las funciones propias de GitHub conforme a sus términos de servicio, **no se concede autorización para copiar, reproducir, modificar, redistribuir, incorporar en otros proyectos, explotar comercialmente ni crear trabajos derivados** a partir del código fuente, datos, documentación, figuras u otros materiales contenidos en este repositorio sin autorización previa y expresa del autor.
+Contacto: **rsalazarv@unadvirtual.edu.co**
 
-La citación académica del proyecto no implica autorización para reutilizar sus materiales.
+## Documento base
 
-Para solicitar autorización de uso, información complementaria o realizar consultas académicas:
-
-**Rodrigo Salazar Valencia**  
-Universidad Nacional Abierta y a Distancia — UNAD  
-**Correo institucional:** rsalazarv@unadvirtual.edu.co
+La organización técnica de este repositorio fue contrastada con la versión V6 del proyecto de grado de Ingeniería de Telecomunicaciones, Universidad Nacional Abierta y a Distancia — UNAD.

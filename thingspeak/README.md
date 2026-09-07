@@ -1,13 +1,19 @@
 # ThingSpeak
 
-ThingSpeak fue utilizado como plataforma remota de telemetría durante la validación experimental del DPVAD_SAT.
+ThingSpeak fue la plataforma remota utilizada para recepción y visualización de telemetría.
 
-En condiciones de conectividad disponible, el dispositivo publicó información mediante el modo ONLINE. Después de periodos de indisponibilidad, los registros pendientes fueron transmitidos mediante BACKFILL.
+Resultados de la ventana formal:
+- 11.148 publicaciones remotas;
+- 7.641 ONLINE;
+- 3.507 BACKFILL;
+- BACKFILL = 31,46 % de la telemetría remota.
 
-En la versión evaluada:
+El canal remoto es parte del entorno experimental, pero no reemplaza la persistencia local en microSD.
 
-- ONLINE utilizó ocho campos;
-- BACKFILL transmitió seis campos;
-- `field7` y `field8` no fueron transmitidos en BACKFILL por diseño.
+## Exportación pendiente de incorporar
 
-ThingSpeak se utilizó como plataforma de prototipado, recepción y visualización remota. Al ser un servicio externo, no se considera un repositorio completamente controlado por el DPVAD_SAT.
+El documento V6 identifica `feeds_thingspeak.csv` como fuente primaria del análisis. Ese archivo no estaba disponible entre los materiales recuperados para esta reconstrucción del paquete, por lo que **no se fabricó ni reconstruyó artificialmente**.
+
+Cuando se disponga del CSV original debe ubicarse en:
+
+`data/raw/thingspeak/feeds_thingspeak.csv`
