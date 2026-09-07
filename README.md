@@ -82,7 +82,3 @@ Para solicitar autorización de uso, información complementaria o realizar cons
 **Rodrigo Salazar Valencia**  
 Universidad Nacional Abierta y a Distancia — UNAD  
 **Correo institucional:** rsalazarv@unadvirtual.edu.co
-
-## Repositorio
-
-https://github.com/rsalazarvco-rgb/dpvad-sat
